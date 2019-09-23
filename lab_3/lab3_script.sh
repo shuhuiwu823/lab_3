@@ -29,8 +29,5 @@ PhoneNum=`grep -Eo '303-[0-9-]{1,}' $fileName`
 echo "Phone number with 303 area code: \n$PhoneNum\n"
 
 #(4.4-3) store email from geocities.com to a new file
-emailGeocities=`grep "@geocities.com" $fileName >> ./email_results.txt`
-$emailGeocities
+grep geocities.com regex_practice.txt >> email_results.txt
 echo "Emails from Geocities.com have been saving to email_results.txt\n"
-
- 
