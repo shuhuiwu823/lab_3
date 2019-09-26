@@ -14,20 +14,22 @@ read RegularExpression
 grep $RegularExpression $FileName
 
 #(4.3) grep to output the number of phone number
-phoneNum = egrep -c "[0-9]{3}-[0-9]{3}-[0-9]{4}" regex_practice.txt
-
+phoneNum=`grep -Eo '[0-9]{3}-[0-9]{3}-[0-9]{4}' regex_practice.txt`
 echo "phone number: $phoneNum"
 
 #(4.4-1) get total number of email 
-emailNum=`grep -c -Eo '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,6}' $fileName`
+emailNum=`grep -c -Eo '[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,6}' $FileName`
 echo "Email count: \n$emailNum\n"
 echo "Result has been save to file regex_practice.txt\n"
 echo $emailNum$'\n' >> ./regex_practice.txt
 
 #(4.4-2) find out the match part of phone numbers
-PhoneNum=`grep -Eo '303-[0-9-]{1,}' $fileName`
+PhoneNum=`grep -Eo '303-[0-9-]{1,}' $FileName`
 echo "Phone number with 303 area code: \n$PhoneNum\n"
 
 #(4.4-3) store email from geocities.com to a new file
-grep geocities.com regex_practice.txt >> email_results.txt
-echo "Emails from Geocities.com have been saving to email_results.txt\n"
+echo "Number of email address in the file of $FileName is:"
+grep -c "@" $FileName
+
+grep -Eo "303-[0-9]{3}-[0-9]{4}" $FileName
+grep "geocities.com" $FileName >> ./email_results.txt
